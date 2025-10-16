@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Ticket Form</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f7f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        form {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+
+        label {
+            display: block;
+            color: #333;
+            font-weight: bold;
+            margin-bottom: 8px;
+            margin-top: 15px;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px 15px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 16px;
+            appearance: none;
+            background-color: #f9f9f9;
+            cursor: pointer;
+        }
+
+        /* Submit Button Color Change to Blue-Purple */
+        button[type="submit"] {
+            background-color: #9b59b6; 
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+            width: calc(60% - 10px);
+            margin-right: 10px;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #8e44ad; /* Darker blue-purple on hover */
+        }
+
+        /* Cancel link styling (secondary button) */
+        a {
+            display: inline-block;
+            text-align: center;
+            text-decoration: none;
+            color: #7f8c8d;
+            background-color: #ecf0f1;
+            padding: 12px 20px;
+            border-radius: 6px;
+            transition: background-color 0.3s ease;
+            width: calc(40% - 10px);
+            box-sizing: border-box;
+        }
+
+        a:hover {
+            background-color: #bdc3c7;
+            color: #333;
+        }
+    </style>
+</head>
+
+<body>
+    <form th:action="${ticket != null} ? @{/tickets/update/{id}(id=${ticket.id})} : @{/tickets}" method="post">
+        <h1 th:text="${ticket != null} ? 'Edit Ticket' : 'Create Ticket'"></h1>
+
+        <label for="user">Select User:</label>
+        <select name="userId" id="user" required>
+            <option value="">Choose User </option>
+            <option th:each="u : ${users}" th:value="${u.id}" th:text="${u.name}"
+                th:selected="${ticket != null} ? ${ticket.user?.id} == ${u.id} : false">
+            </option>
+        </select>
+
+        <label for="train">Select Train:</label>
+        <select name="trainId" id="train" required>
+            <option value="">Choose Train</option>
+            <option th:each="t : ${trains}" th:value="${t.id}" th:text="${t.name}"
+                th:selected="${ticket != null} ? ${ticket.train?.id} == ${t.id} : false">
+            </option>
+        </select>
+        <br>
+        
+        <button type="submit">Save Ticket</button>
+        <a th:href="@{/tickets}">Cancel</a>
+    </form>
+</body>
+
+</html>

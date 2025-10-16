@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Train Reservation System</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(120deg, #2196F3, #42A5F5);
+            margin: 0;
+            padding: 0;
+            color: white;
+        }
+        header {
+            text-align: center;
+            padding: 40px 20px;
+        }
+        h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+        p {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+        .menu {
+            display: flex;
+            justify-content: center;
+            margin-top: 40px;
+            gap: 25px;
+        }
+        .menu a {
+            background: white;
+            color: #2196F3;
+            padding: 14px 25px;
+            border-radius: 8px;
+            font-size: 16px;
+            text-decoration: none;
+            transition: 0.3s;
+            font-weight: 500;
+        }
+        .menu a:hover {
+            background: #1565C0;
+            color: white;
+        }
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            font-size: 14px;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to Train Reservation System</h1>
+        <p>Manage trains, users, and tickets easily</p>
+    </header>
+
+    <div class="menu">
+        <a href="/trains">🚆 Manage Trains</a>
+        <a href="/tickets">🎟️ Manage Tickets</a>
+        <a href="/users">👤 Manage Users</a>
+    </div>
+
+    <footer>
+        <p>© 2025 Train Reservation System | Built with Spring Boot & Thymeleaf</p>
+    </footer>
+</body>
+</html>
