@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ticket Booking</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <h1>Ticket Booking</h1>
+
+    <!-- Ticket Booking Form -->
+    <form action="/tickets/book" method="post">
+        <label for="userId">User ID:</label>
+        <input type="number" id="userId" name="userId" required>
+
+        <label for="trainId">Train ID:</label>
+        <input type="number" id="trainId" name="trainId" required>
+
+        <label for="journeyDate">Journey Date:</label>
+        <input type="date" id="journeyDate" name="journeyDate" required>
+
+        <label for="class">Class:</label>
+        <select id="class" name="class" required>
+            <option value="Economy">Economy</option>
+            <option value="Business">Business</option>
+            <option value="First Class">First Class</option>
+        </select>
+
+        <button type="submit">Book Ticket</button>
+    </form>
+
+    <!-- Ticket List Table -->
+    <h2>Booked Tickets</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Ticket ID</th>
+                <th>User ID</th>
+                <th>Train ID</th>
+                <th>Journey Date</th>
+                <th>Class</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1001</td>
+                <td>1</td>
+                <td>12345</td>
+                <td>2023-10-20</td>
+                <td>Economy</td>
+                <td>Confirmed</td>
+                <td>
+                    <a href="#" class="action-btn action-edit">Edit</a>
+                    <a href="#" class="action-btn action-delete">Cancel</a>
+                </td>
+            </tr>
+            <tr>
+                <td>1002</td>
+                <td>2</td>
+                <td>67890</td>
+                <td>2023-10-21</td>
+                <td>Business</td>
+                <td>Waiting</td>
+                <td>
+                    <a href="#" class="action-btn action-edit">Edit</a>
+                    <a href="#" class="action-btn action-delete">Cancel</a>
+                </td>
+            </tr>
+            <!-- Add more rows as needed -->
+        </tbody>
+    </table>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>User Form</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #dfe9f3 0%, #ffffff 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .form-card {
+            background: #fff;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .form-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        h1 {
+            color: #34495e;
+            margin-bottom: 25px;
+            font-size: 24px;
+            border-bottom: 2px solid #9b59b6;
+            display: inline-block;
+            padding-bottom: 6px;
+        }
+
+        label {
+            display: block;
+            text-align: left;
+            color: #2c3e50;
+            font-weight: 600;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        input[type="text"], input[type="email"] {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 15px;
+            background-color: #f8f9fa;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="text"]:focus, input[type="email"]:focus {
+            border-color: #9b59b6;
+            outline: none;
+        }
+
+        button {
+            width: 100%;
+            background-color: #9b59b6;
+            border: none;
+            color: #fff;
+            font-size: 16px;
+            padding: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #8e44ad;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 15px;
+            color: #3498db;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-card">
+        <h1 th:text="${user.id == null} ? 'Create User' : 'Edit User'"></h1>
+        <form th:action="${user.id == null} ? @{/users} : @{/users/update/{id}(id=${user.id})}" 
+              th:object="${user}" method="post">
+
+            <label>Name</label>
+            <input type="text" th:field="*{name}" required/>
+
+            <label>Email</label>
+            <input type="email" th:field="*{email}" required/>
+
+            <button type="submit">Save</button>
+        </form>
+
+        <a href="/users" class="back-link">← Back to User List</a>
+    </div>
+</body>
+</html>

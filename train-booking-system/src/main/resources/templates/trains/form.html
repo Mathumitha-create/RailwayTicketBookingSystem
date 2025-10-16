@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Train Form</title>
+    <style>
+        /* Global Body Styling - Centering the form */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f7f6; /* Light grey-green background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        /* Form Container */
+        form {
+            background-color: #ffffff; /* White background for the form */
+            padding: 40px;
+            border-radius: 12px; /* Softly rounded corners */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+            width: 100%;
+            max-width: 400px;
+        }
+
+        /* Heading Style */
+        h1 {
+            color: #2c3e50; /* Dark blue-grey */
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #3498db; /* Blue line for emphasis */
+            padding-bottom: 10px;
+        }
+
+        /* Label and Input Styling */
+        label {
+            display: flex; /* Use flex to align label and input horizontally */
+            flex-direction: column; /* Stack label text and input field vertically */
+            color: #333;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        
+        /* Style for all input fields */
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 10px 15px;
+            margin-top: 5px; /* Space between label text and input box */
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 16px;
+            background-color: #f9f9f9;
+        }
+
+        /* Submit Button Styling (Blue-Purple) */
+        button[type="submit"] {
+            background-color: #9b59b6; 
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+            width: 100%; /* Full width button */
+            margin-top: 10px;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #8e44ad; /* Darker blue-purple on hover */
+        }
+    </style>
+</head>
+
+<body>
+    <form th:action="${train.id == null} ? @{/trains} : @{/trains/update/{id}(id=${train.id})}" th:object="${train}"
+        method="post">
+
+        <h1 th:if="${train.id == null}">Create Train</h1>
+        <h1 th:if="${train.id != null}">Edit Train</h1>
+
+        <label>
+            Name:
+            <input type="text" th:field="*{name}" required />
+        </label>
+        
+        <label>
+            Source:
+            <input type="text" th:field="*{source}" required />
+        </label>
+        
+        <label>
+            Destination:
+            <input type="text" th:field="*{destination}" required />
+        </label>
+        
+        <label>
+            Base Price:
+            <input type="number" step="0.01" th:field="*{basePrice}" required />
+        </label>
+        
+        <label>
+            Discount Percentage:
+            <input type="number" step="0.01" th:field="*{discountPercentage}" required />
+        </label>
+
+        <button type="submit">Save Train</button>
+    </form>
+
+</body>
+
+</html>
